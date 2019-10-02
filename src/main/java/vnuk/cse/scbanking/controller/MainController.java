@@ -10,4 +10,12 @@ public class MainController {
     public String home() {
         return "/base";
     }
+    @GetMapping("/login")
+    public String login() {
+        return "/pages/login";
+    }
+    @GetMapping("/dashboard")
+    public String dashboard() {
+        return "/pages/dashboard";
+    }
 }

@@ -1,10 +1,77 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+>
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{css/login.css}"/>
+    <link rel="stylesheet" th:href="@{bootstrap/css/bootstrap.css}"/>
+    <link th:href="@{fontawesome-free/css/all.min.css}" rel="stylesheet" type="text/css">
 </head>
 <body>
-
+    <div class="background">
+        <div class="row">
+            <div class="mx-auto pl-5">
+                <h2 class="ml-5 pl-5 text-white text-justify mt-5" style=" display: inline-block">
+                    TAT Technology
+                </h2>
+                <img class="icon" th:src="@{img/logo.png}" />
+            </div>
+        </div>
+        <div class="hero-content text-info">
+            <div id="loginform" class="container">
+                <!-- Outer Row -->
+                <div class="row justify-content-center">
+                    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-8 col-12">
+                        <div class="card o-hidden border-0 shadow-lg my-5">
+                            <div class="card-body p-0">
+                                <!-- Nested Row within Card Body -->
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="p-5">
+                                            <div class="text-center ">
+                                                <h1 class="h4 text-info mb-4">
+                                                    Welcome Back!
+                                                </h1>
+                                            </div>
+                                            <form id="login" class="user text-danger">
+                                                <br>
+                                                <div class="form-group mb-4">
+                                                    <input
+                                                            id="email"
+                                                            aria-describedby="emailHelp"
+                                                            type="email"
+                                                            class="form-control form-control-user borderform"
+                                                            placeholder="Email Address"
+                                                    />
+                                                </div>
+                                                <div class="form-group my-4">
+                                                    <input
+                                                            id="password"
+                                                            type="password"
+                                                            class="form-control form-control-user borderform"
+                                                            placeholder="Password"
+                                                    />
+                                                </div>
+                                                <hr class="my-4">
+                                                <input class="btn btn-info btn-user btn-block borderform mt-4" type="submit" value="Login" />
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
+<script th:src="@{js/jquery.min.js}"></script>
+<script th:src="@{bootstrap/js/bootstrap.min.js}"></script>
+<script th:src="@{bootstrap/js/bootstrap.bundle.min.js}"></script>
+<script th:src="@{js/app.js}"></script>
 </html>
