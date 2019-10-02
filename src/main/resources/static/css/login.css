@@ -1,0 +1,11 @@
+.background {
+    background: #25c9d0;
+    min-height: 100vh;
+}
+.borderform {
+    border-radius: 50px;
+}
+.icon {
+    width: 15%;
+    min-width: 50px;
+}
