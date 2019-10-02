@@ -1,10 +1,116 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{base.html}">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Wallets</title>
 </head>
 <body>
+<header layout:fragment="header" class="masthead" style="background-image: url('img/home-bg.jpg')">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-10 mx-auto">
+                <div class="site-heading">
+                    <h1>Wallets</h1>
+                    <span class="subheading">E-Wallet by TAT High Tech</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<div layout:fragment="content" >
+    <div class="container">
+        <div class="row">
+            <div class="col-md-5 mx-auto bg-light">
+                <h5 class="card-header text-white bg-info text-left py-4">
+                    <strong>Wallets</strong>
+                </h5>
+                <form id="wallets" class="bg-white p-4 text-info">
+                    <div class="form-group row">
+                        <div class="col-sm-7 ml-2">
+                            <p class="mt-1 text-left">
+                                Wallet 1 - Shopping
+                            </p>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-sm-7 ml-2">
+                            <p class="mt-1 text-left">
+                                Wallet 2 - Travelling
+                            </p>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-sm-7 ml-2">
+                            <p class="mt-1 text-left">
+                                Wallet 3 - Billing
+                            </p>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="col-md-7 mx-auto bg-light">
+                <h5 class="card-header text-white bg-info text-left py-4">
+                    <strong>Create Wallet</strong>
+                </h5>
+                <form id="create-wallet" class="bg-white p-4 text-info">
+                    <div class="form-group row">
+                        <label class="col-sm-4 col-form-label" >
+                            Name
+                        </label>
+                        <div class="col-sm-7 ml-2">
+                            <input type="text" class="form-control mt-1 text-right">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-4 col-form-label">
+                           Description
+                        </label>
+                        <div class="col-sm-7 ml-2">
+                            <input type="text" class="form-control mt-1 text-right">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-4 col-form-label">
+                            Create Date
+                        </label>
+                        <div class="col-sm-5 ml-2">
+                            <div class="row">
+                                <div class="col-sm-9">
+                                    <input type="date" class="form-control mt-1 text-right">
+                                </div>
+                                <div class="col-sm-3" style="display: flex;align-items: center;">
+                                    <i class="far fa-calendar-alt"></i>
+                                </div>
+                            </div>
 
+
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-4 col-form-label">
+                            Init Amount
+                        </label>
+                        <div class="col-sm-6 ml-2">
+                            <input type="text" class="form-control mt-1 text-right">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-4 col-form-label">
+
+                        </label>
+                        <div class="col-sm-4 ml-2">
+                            <input type="submit" class="btn btn-primary form-control mt-1 text-center" value="Create Wallet">
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
 </body>
 </html>

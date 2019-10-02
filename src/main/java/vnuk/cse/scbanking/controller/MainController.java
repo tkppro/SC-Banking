@@ -18,4 +18,14 @@ public class MainController {
     public String dashboard() {
         return "/pages/dashboard";
     }
+
+    @GetMapping("/wallets")
+    public String wallet() {
+        return "/pages/wallets";
+    }
+
+    @GetMapping("/payments")
+    public String payments() {
+        return "/pages/bill";
+    }
 }
