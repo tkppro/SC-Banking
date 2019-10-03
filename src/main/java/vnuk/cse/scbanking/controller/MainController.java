@@ -19,6 +19,11 @@ public class MainController {
         return "/pages/dashboard";
     }
 
+    @GetMapping("/topup")
+    public String topup() {
+        return "/pages/topup";
+    }
+
     @GetMapping("/wallets")
     public String wallet() {
         return "/pages/wallets";
