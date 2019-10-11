@@ -14,10 +14,6 @@ public class MainController {
     public String login() {
         return "/pages/login";
     }
-    @GetMapping("/dashboard")
-    public String dashboard() {
-        return "/pages/dashboard";
-    }
 
     @GetMapping("/topup")
     public String topup() {
