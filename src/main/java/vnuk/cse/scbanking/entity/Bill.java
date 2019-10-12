@@ -1,6 +1,7 @@
 package vnuk.cse.scbanking.entity;
 
 import lombok.Data;
+//import vnuk.cse.scbanking.entity;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
