@@ -4,6 +4,7 @@ import lombok.Data;
 import javax.persistence.*;
 import java.awt.*;
 import java.io.Serializable;
+import vnuk.cse.scbanking.entity.User;
 
 @Data
 @Entity
@@ -31,5 +32,5 @@ public class Card implements Serializable{
 
     @ManyToOne
     @JoinColumn(name = "user_id")
-    private int userId;
+    private User user;
 }
