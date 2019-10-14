@@ -1,6 +1,7 @@
 package vnuk.cse.scbanking.entity;
 import lombok.Data;
 
+//import vnuk.cse.scbanking.entity.Card;
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -11,17 +12,21 @@ public class Wallet implements Serializable {
     @Column(name="id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    public int id;
+    private int id;
 
     @Column(name = "name")
-    public String name;
+    private String name;
 
     @Column(name = "description")
-    public String description;
+    private String description;
 
     @Column(name = "created_at")
-    public String createdAt;
+    private String createdAt;
 
     @Column(name = "amount")
-    public String amount;
+    private String amount;
+
+//    @ManyToOne
+//    @JoinColumn(name="card_id", nullable=false)
+//    private Card card;
 }
