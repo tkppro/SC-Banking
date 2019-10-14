@@ -50,5 +50,7 @@ public class User implements Serializable {
     @OneToMany(mappedBy = "user")
     private List<Payment> payment;
 
-
+    public String getEmail() {
+        return email;
+    }
 }

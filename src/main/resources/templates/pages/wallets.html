@@ -31,9 +31,7 @@
                 <form id="wallets" class="bg-white p-4 text-info">
                     <div class="form-group row" th:each="wallet: ${wallets}">
                         <div class="col-sm-7 ml-2">
-                            <p class="mt-1 text-left" th:text="'Wallet '+ ${wallet.id} + ' - '+ ${wallet.name}">
-                                Wallet 1 - Shopping
-                            </p>
+                            <p class="mt-1 text-left" th:text="'Wallet '+ ${wallet.id} + ' - '+ ${wallet.name}" />
                         </div>
                     </div>
                 </form>
