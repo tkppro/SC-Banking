@@ -24,11 +24,12 @@ public class Card implements Serializable{
     private int cvv;
 
     @Column(name = "expired_date")
-    private String expired_date;
+    private String expiredDate;
 
     @Column(name = "image")
-    private Byte[] image;
+    private String image;
 
-    @Column(name = "user_id")
-    private int user_id;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private int userId;
 }
