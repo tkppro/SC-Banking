@@ -4,6 +4,9 @@ import lombok.Data;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
+
+import vnuk.cse.scbanking.entity.*;
 
 @Data
 @Entity
@@ -22,7 +25,6 @@ public class Bill implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdAt;
 
-//    @OneToMany
-//    @JoinColumn(name = "id", nullable = false)
-//    private Payment payment;
+    @OneToMany(mappedBy = "bill")
+    private List<Payment> payment;
 }

@@ -4,6 +4,9 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import vnuk.cse.scbanking.entity.Bill;
+import vnuk.cse.scbanking.entity.User;
+import vnuk.cse.scbanking.entity.Wallet;
 
 @Data
 @Entity
@@ -20,23 +23,21 @@ public class Payment implements Serializable{
     @Column(name = "bill_number")
     private String billNumber;
 
-
-    @ManyToOne
-    @JoinColumn(name = "wallet_id")
-    private int walletId;
-
     @Column(name = "amount")
     private int amount;
-
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    private int userId;
-
-    @ManyToOne
-    @JoinColumn(name = "bill_id")
-    private int billId;
 
     @Column(name = "created_at")
     private String createdAt;
 
+    @ManyToOne
+    @JoinColumn(name = "wallet_id")
+    private Wallet wallet;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+
+    @ManyToOne
+    @JoinColumn(name = "bill_id")
+    private Bill bill;
 }

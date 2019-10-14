@@ -1,9 +1,11 @@
 package vnuk.cse.scbanking.entity;
 import lombok.Data;
 
-//import vnuk.cse.scbanking.entity.Card;
+import vnuk.cse.scbanking.entity.Card;
+import vnuk.cse.scbanking.entity.Payment;
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 @Data
 @Entity
@@ -26,7 +28,10 @@ public class Wallet implements Serializable {
     @Column(name = "amount")
     private String amount;
 
-//    @ManyToOne
-//    @JoinColumn(name="card_id", nullable=false)
-//    private Card card;
+    @OneToMany(mappedBy = "wallet")
+    private List<Payment> payment;
+
+    @ManyToOne
+    @JoinColumn(name="card_id")
+    private Card card;
 }

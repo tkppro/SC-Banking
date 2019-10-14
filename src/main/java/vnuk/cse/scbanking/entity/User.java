@@ -1,10 +1,13 @@
 package vnuk.cse.scbanking.entity;
 
 import lombok.Data;
-//import vnuk.cse.scbanking.entity;
+
+import vnuk.cse.scbanking.entity.Payment;
+import vnuk.cse.scbanking.entity.Card;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 @Data
 @Entity
@@ -37,17 +40,15 @@ public class User implements Serializable {
     @Column(name = "address")
     private String address;
 
-    @Column(name = "create_at")
+    @Column(name = "created_at")
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdAt;
 
-//    @OneToMany
-//    @JoinColumn(name="id", nullable=false)
-//    private Card card;
+    @OneToMany(mappedBy = "user")
+    private List<Card> card;
 
-//    @OneToMany
-//    @JoinColumn(name="id", nullable=false)
-//    private Payment payment;
+    @OneToMany(mappedBy = "user")
+    private List<Payment> payment;
 
 
 }
