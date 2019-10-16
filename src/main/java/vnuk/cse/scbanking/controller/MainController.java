@@ -15,9 +15,4 @@ public class MainController {
         return "/pages/login";
     }
 
-    @GetMapping("/wallets")
-    public String wallet() {
-        return "/pages/wallets";
-    }
-
 }
