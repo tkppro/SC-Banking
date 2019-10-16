@@ -36,12 +36,15 @@
                                                 <h1 class="h4 text-info mb-4">
                                                     Welcome Back!
                                                 </h1>
+                                                <small class="text-danger" th:text="${errorMessage}"></small>
                                             </div>
-                                            <form id="login" class="user text-danger">
+                                            <form id="login" class="user text-danger" th:method="post"
+                                                th:action="@{/login}">
                                                 <br>
                                                 <div class="form-group mb-4">
                                                     <input
                                                             id="email"
+                                                            name="email"
                                                             aria-describedby="emailHelp"
                                                             type="email"
                                                             class="form-control form-control-user borderform"
@@ -51,6 +54,7 @@
                                                 <div class="form-group my-4">
                                                     <input
                                                             id="password"
+                                                            name="password"
                                                             type="password"
                                                             class="form-control form-control-user borderform"
                                                             placeholder="Password"
