@@ -23,7 +23,7 @@
 </header>
 <div layout:fragment="content" >
     <div class="container">
-        <div class="col-sm-12 mx-auto bg-light">
+        <div class="col-md-8 mx-auto bg-light">
             <h5 class="card-header text-white bg-info text-left py-4">
                 <strong>Transfer</strong>
             </h5>
@@ -32,7 +32,7 @@
                     <label class="col-sm-4 col-form-label">
                         Select Wallet
                     </label>
-                    <div class="col-sm-2 ml-2">
+                    <div class="col-sm-4 ml-2">
                         <select name="wallets" id="list-wallets" class="form-control">
                             <option th:value="${wallet.id}" th:text="${wallet.name}" th:each="wallet: ${wallets}"></option>
                         </select>
@@ -42,7 +42,7 @@
                     <label class="col-sm-4 col-form-label" >
                         Amount
                     </label>
-                    <div class="col-sm-3 ml-2">
+                    <div class="col-sm-5 ml-2">
                         <input type="text" class="form-control mt-1 text-right">
                     </div>
                 </div>
@@ -50,7 +50,7 @@
                     <label class="col-sm-4 col-form-label">
                         Fee Type
                     </label>
-                    <div class="col-sm-2 ml-2">
+                    <div class="col-sm-3 ml-2">
                         <select name="wallets" id="list-fee" class="form-control">
                             <option value="1">Include</option>
                             <option value="2">Exclude</option>
@@ -61,7 +61,7 @@
                     <label class="col-sm-4 col-form-label">
 
                     </label>
-                    <div class="col-sm-2 ml-2">
+                    <div class="col-sm-3 ml-2">
                         <input type="submit" class="btn btn-info form-control mt-1 text-center" value="Transfer">
                     </div>
                 </div>
