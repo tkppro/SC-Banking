@@ -34,4 +34,8 @@ public class Wallet implements Serializable {
     @ManyToOne
     @JoinColumn(name="card_id")
     private Card card;
+
+    public float getAmount() {
+        return Float.parseFloat(amount);
+    }
 }
