@@ -65,9 +65,7 @@
                         </label>
                         <div class="col-sm-2 ml-2">
                             <select name="wallets" id="list-wallets" class="form-control">
-                                <option value="1">Wallet 1</option>
-                                <option value="2">Wallet 2</option>
-                                <option value="3">Wallet 3</option>
+                                <option th:value="${wallet.id}" th:text="${wallet.name}" th:each="wallet: ${wallets}"></option>
                             </select>
                         </div>
                     </div>

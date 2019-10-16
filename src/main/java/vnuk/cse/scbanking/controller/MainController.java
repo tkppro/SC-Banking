@@ -15,23 +15,9 @@ public class MainController {
         return "/pages/login";
     }
 
-    @GetMapping("/topup")
-    public String topup() {
-        return "/pages/topup";
-    }
-
     @GetMapping("/wallets")
     public String wallet() {
         return "/pages/wallets";
     }
 
-    @GetMapping("/transfer")
-    public String transfer() {
-        return"pages/transfer";
-    }
-
-    @GetMapping("/payments")
-    public String payments() {
-        return "/pages/bill";
-    }
 }
