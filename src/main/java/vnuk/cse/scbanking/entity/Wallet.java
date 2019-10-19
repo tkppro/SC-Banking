@@ -1,6 +1,7 @@
 package vnuk.cse.scbanking.entity;
 import lombok.Data;
 
+import org.springframework.beans.factory.annotation.Value;
 import vnuk.cse.scbanking.entity.Card;
 import vnuk.cse.scbanking.entity.Payment;
 import javax.persistence.*;
@@ -26,7 +27,7 @@ public class Wallet implements Serializable {
     private String createdAt;
 
     @Column(name = "amount")
-    private String amount;
+    private String amount = "0";
 
     @OneToMany(mappedBy = "wallet")
     private List<Payment> payment;
