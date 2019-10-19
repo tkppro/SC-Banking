@@ -51,6 +51,6 @@ public class User implements Serializable {
     private List<Payment> payment;
 
     public String getEmail() {
-        return email;
+        return this.email;
     }
 }
