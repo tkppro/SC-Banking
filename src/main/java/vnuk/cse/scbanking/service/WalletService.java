@@ -16,4 +16,7 @@ public class WalletService {
         return walletRepository.findAll();
     }
 
+    public void save (Wallet wallet) {
+        walletRepository.save(wallet);
+    }
 }
