@@ -19,7 +19,8 @@ public class BillController {
     WalletService walletService;
 
     @GetMapping("/payments")
-    public ModelAndView bills() {
+    public ModelAndView bills()
+    {
         ModelAndView modelAndView = new ModelAndView("/pages/bill");
         List<Bill> bills = billService.findAll();
         List<Wallet> wallets = walletService.findAll();

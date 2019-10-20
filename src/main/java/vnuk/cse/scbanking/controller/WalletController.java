@@ -30,7 +30,7 @@ public class WalletController {
         return modelAndView;
     }
 
-    @PostMapping(value = "/wallets")
+    @PostMapping("/wallets")
     public ModelAndView saveWallet(@ModelAttribute("wallet") @Valid Wallet wallet, BindingResult result) {
         if (!result.hasErrors()) {
             walletService.save(wallet);
