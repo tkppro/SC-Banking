@@ -38,4 +38,48 @@
             });
     }
 
+    $('#transfer-submit').on('click', function(event){
+        if($('#list-wallets-from').val() == $('#list-wallets-to').val()) {
+            event.preventDefault();
+            $('.error-id-wallet').text('Wallet cannot be the same');
+            $('#list-wallets-from').css('border-color', 'red');
+            $('#list-wallets-to').css('border-color', 'red');
+        }
+
+        if($('#amount-transfer-input').val().length == 0 || $('#amount-transfer-input').val() == 0) {
+            event.preventDefault();
+            $('#error-amount-transfer-input').text('Need a number bigger than 0!');
+            $('#amount-transfer-input').css('border-color', 'red');
+
+        } else
+            $('#transfer-submit').submit();
+    });
+
+    $('#amount-transfer-input').keyup(function() {
+        if($('#amount-transfer-input').val().length >= 0) {
+            $('#error-amount-transfer-input').text('');
+            $('#amount-transfer-input').css('border-color', '#ced4da');
+        }
+
+        if($('#amount-transfer-input').val().length == 0 || $('#amount-transfer-input').val() == 0) {
+            $('#error-amount-transfer-input').text('Need a number bigger than 0!');
+            $('#amount-transfer-input').css('border-color', 'red');
+        }
+    });
+
+    $('#list-wallets-from, #list-wallets-to').change(function () {
+        if($('#list-wallets-from').val() == $('#list-wallets-to').val()) {
+           $('.error-id-wallet').text('Wallet cannot be the same');
+           $('#list-wallets-from').css('border-color', 'red');
+           $('#list-wallets-to').css('border-color', 'red');
+        }
+
+        if($('#list-wallets-from').val() != $('#list-wallets-to').val()) {
+            $('.error-id-wallet').text('');
+            $('#list-wallets-from').css('border-color', '#ced4da');
+            $('#list-wallets-to').css('border-color', '#ced4da');
+        }
+    });
+
+
 })(jQuery); // End of use strict

@@ -5,5 +5,5 @@ import vnuk.cse.scbanking.entity.Wallet;
 
 
 public interface WalletRepository extends JpaRepository<Wallet, Integer> {
-
+    Wallet findWalletById(int id);
 }
