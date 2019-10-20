@@ -32,7 +32,7 @@ public class Wallet implements Serializable {
     private String createdAt;
 
     @Column(name = "amount")
-    private String amount = "0";
+    private double amount = 0.0;
 
     @OneToMany(mappedBy = "wallet")
     private List<Payment> payment;
@@ -41,8 +41,11 @@ public class Wallet implements Serializable {
     @JoinColumn(name="card_id")
     private Card card;
 
-    public float getAmount() {
-        return Float.parseFloat(amount);
+    public double getAmount() {
+        return this.amount;
     }
 
+    public void setAmount(double amount) {
+        this.amount = amount;
+    }
 }

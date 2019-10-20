@@ -27,23 +27,25 @@
             <h5 class="card-header text-white bg-info text-left py-4">
                 <strong>Transfer</strong>
             </h5>
-            <form id="account" class="bg-white p-4 text-info">
+            <form id="account" class="bg-white p-4 text-info" th:method="post" th:action="@{/wallets/transfer}">
                 <div class="form-group row">
                     <label class="col-sm-4 col-form-label">
                         From Wallet
                     </label>
                     <div class="col-sm-4 ml-2">
-                        <select name="wallets" id="list-wallets-form" class="form-control">
+                        <select name="from-wallet" id="list-wallets-from" class="form-control">
                             <option th:value="${wallet.id}" th:text="${wallet.name}" th:each="wallet: ${wallets}"></option>
                         </select>
+                        <small class="text-danger error-id-wallet"></small>
                     </div>
                 </div>
                 <div class="form-group row">
                     <label class="col-sm-4 col-form-label" >
                         Amount
                     </label>
-                    <div class="col-sm-4 ml-2">
-                        <input type="text" class="form-control mt-1 text-left">
+                    <div class="col-sm-4 ml-2 transfer-input-wrapper">
+                        <input id="amount-transfer-input" type="number" class="form-control mt-1 text-left" name="amount" required>
+                        <small id="error-amount-transfer-input" class="text-danger"></small>
                     </div>
                 </div>
                 <div class="form-group row">
@@ -51,9 +53,10 @@
                         To Wallet
                     </label>
                     <div class="col-sm-4 ml-2">
-                        <select name="wallets" id="list-wallets-to" class="form-control">
+                        <select name="to-wallet" id="list-wallets-to" class="form-control">
                             <option th:value="${wallet.id}" th:text="${wallet.name}" th:each="wallet: ${wallets}"></option>
                         </select>
+                        <small class="text-danger error-id-wallet"></small>
                     </div>
                 </div>
                 <div class="form-group row">
@@ -61,7 +64,7 @@
 
                     </label>
                     <div class="col-sm-3 ml-2">
-                        <input type="submit" class="btn btn-info form-control mt-1 text-center" value="Transfer">
+                        <input id="transfer-submit" type="submit" class="btn btn-info form-control mt-1 text-center" value="Transfer">
                     </div>
                 </div>
             </form>
