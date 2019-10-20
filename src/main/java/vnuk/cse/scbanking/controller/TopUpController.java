@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import vnuk.cse.scbanking.entity.Card;
 import vnuk.cse.scbanking.entity.Wallet;
@@ -28,21 +29,17 @@ public class TopUpController {
         return modelAndView;
     }
     @PostMapping("/topup")
-    public  ModelAndView createNewTopup(@Valid Wallet wallet, @Valid Card card , BindingResult bindingResult) {
+    public  ModelAndView createNewTopup(@RequestParam("wallet") int walletId, @RequestParam("amount") double amount) {
         ModelAndView modelAndView = new ModelAndView();
-        Card cardExists = (Card) cardService.findCardByCard_number(card.getCardNumber());
-        if(cardExists == null) {
-            bindingResult
-                    .rejectValue("card", "error.card",
-                            "This card is invalid");
+        if(walletService.topup(walletId, amount))
+        {
+            modelAndView.setViewName("redirect:/dashboard");
+            modelAndView.addObject("successMessage", "Wallet has been topup successfully");
+            return modelAndView;
         }
-        if (bindingResult.hasErrors()) {
-            modelAndView.setViewName("registration");
-        } else {
-            walletService.save(wallet);
-            modelAndView.addObject("successMessage", "User has been registered successfully");
-            modelAndView.addObject("user", new User());
-            modelAndView.setViewName("registration");
+        else {
+            modelAndView.addObject("errorMessage", "Please valid your information");
+            modelAndView.setViewName("redirect:/topup");
 
         }
         return modelAndView;
