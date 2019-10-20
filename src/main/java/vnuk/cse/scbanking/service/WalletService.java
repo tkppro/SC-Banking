@@ -19,4 +19,8 @@ public class WalletService {
     public void save (Wallet wallet) {
         walletRepository.save(wallet);
     }
+
+    public void update (Wallet wallet) {
+        walletRepository.save(wallet);
+    }
 }
