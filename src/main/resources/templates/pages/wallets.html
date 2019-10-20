@@ -40,7 +40,7 @@
                 <h5 class="card-header text-white bg-info text-left py-4">
                     <strong>Create Wallet</strong>
                 </h5>
-                <form id="create-wallet" class="bg-white p-4 text-info" th:action="@{/save}" th:object="${wallet}"
+                <form id="create-wallet" class="bg-white p-4 text-info" th:action="@{/wallets}" th:object="${wallet}"
                       th:method="post">
                     <div class="form-group row">
                         <label class="col-sm-4 col-form-label">
@@ -48,7 +48,9 @@
                         </label>
                         <div class="col-sm-7 ml-2">
                             <input type="text" class="form-control mt-1 text-left" th:field="*{name}" />
+                            <small th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="text-danger"></small>
                         </div>
+
                     </div>
                     <div class="form-group row">
                         <label class="col-sm-4 col-form-label">
