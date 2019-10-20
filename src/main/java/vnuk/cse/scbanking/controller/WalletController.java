@@ -1,14 +1,10 @@
 package vnuk.cse.scbanking.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import vnuk.cse.scbanking.entity.Wallet;
@@ -47,23 +43,5 @@ public class WalletController {
         errorView.addObject("wallets",wallets);
         errorView.setViewName("/pages/wallets");
         return errorView;
-    }
-
-    @PostMapping("/wallets/transfer")
-    public ModelAndView transfer(@RequestParam("from-wallet") int fromWalletId,
-                                 @RequestParam("to-wallet") int toWalletId,
-                                 @RequestParam("amount") double amount)
-    {
-        ModelAndView modelAndView = new ModelAndView();
-        if(walletService.transfer(fromWalletId, toWalletId, amount))
-        {
-            modelAndView.setViewName("redirect:/dashboard");
-
-            return modelAndView;
-        }
-
-        modelAndView.setViewName("redirect:/transfer");
-
-        return modelAndView;
     }
 }
