@@ -19,7 +19,7 @@ public class Card implements Serializable{
     private String name;
 
     @Column(name = "card_number")
-    private String card_number;
+    private String cardNumber;
 
     @Column(name = "cvv")
     private int cvv;
