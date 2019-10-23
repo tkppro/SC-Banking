@@ -44,4 +44,16 @@ public class WalletService {
 
         return false;
     }
+
+    public boolean topup(int walletId, double amount)
+    {
+        Wallet wallet = this.findWalletById(walletId);
+        if(wallet != null)
+        {
+            wallet.setAmount(wallet.getAmount() + amount);
+            this.save(wallet);
+            return true;
+        }
+        return false;
+    }
 }

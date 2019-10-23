@@ -15,4 +15,7 @@ public class CardService {
     public List<Card> findAll() {
         return cardRepository.findAll();
     }
+    public List<Card> findCardByCardNumber(String cardNumber) {
+        return cardRepository.findCardByCardNumber(cardNumber);
+    }
 }
