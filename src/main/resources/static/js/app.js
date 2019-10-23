@@ -38,12 +38,12 @@
             });
     }
 
+    //Validation for transfer
     $('#transfer-submit').on('click', function(event){
         if($('#list-wallets-from').val() == $('#list-wallets-to').val()) {
             event.preventDefault();
             $('.error-id-wallet').text('Wallet cannot be the same');
-            $('#list-wallets-from').css('border-color', 'red');
-            $('#list-wallets-to').css('border-color', 'red');
+            $('#list-wallets-from, #list-wallets-to').css('border-color', 'red');
         }
 
         if($('#amount-transfer-input').val().length == 0 || $('#amount-transfer-input').val() == 0) {
@@ -70,16 +70,99 @@
     $('#list-wallets-from, #list-wallets-to').change(function () {
         if($('#list-wallets-from').val() == $('#list-wallets-to').val()) {
            $('.error-id-wallet').text('Wallet cannot be the same');
-           $('#list-wallets-from').css('border-color', 'red');
-           $('#list-wallets-to').css('border-color', 'red');
+           $('#list-wallets-from, #list-wallets-to').css('border-color', 'red');
         }
 
         if($('#list-wallets-from').val() != $('#list-wallets-to').val()) {
             $('.error-id-wallet').text('');
-            $('#list-wallets-from').css('border-color', '#ced4da');
-            $('#list-wallets-to').css('border-color', '#ced4da');
+            $('#list-wallets-from, #list-wallets-to').css('border-color', '#ced4da');
         }
     });
+    //Call Ajax for payment
+    $('.bill-name').click(function (event) {
+        event.preventDefault();
+        $('#payment-name-header').text($(this).text() + " Payment")
+        $('#bill-id-data').val(this.id);
 
+    })
+
+    validatePaymentForm();
+
+    $('.alert').css('display', 'none');
 
 })(jQuery); // End of use strict
+
+function ajaxPayment() {
+
+    var billId = $('#bill-id-data').val();
+    var consumberNumber = $('#consumer-no').val();
+    var billNumber = $('#bill-no').val();
+    var walletId = $('#list-wallets').val();
+    var amount = $('#payment-amount').val();
+    var userId = "1";
+
+    var datas = {};
+    datas['consumerNumber'] = consumberNumber;
+    datas['billNumber'] = billNumber;
+    datas['amount'] = amount;
+    datas['wallet_id'] = walletId;
+    datas['user_id'] = userId;
+    datas['bill_id'] = billId;
+    $.ajax({
+        type: "POST",
+        contentType: "application/json",
+        url: "/payments",
+        data: JSON.stringify(datas),
+        dataType: 'json',
+        success: function (data) {
+            $('.alert').addClass('alert-success').removeClass('alert-danger').text(data['msg']).fadeIn(1000);
+            $('.alert').css('display', 'block');
+
+        },
+        error: function (e) {
+            $('.alert').addClass('alert-danger').removeClass('alert-success').text(e.responseJSON.msg).fadeIn(1000);
+            $('.alert').css('display', 'block');
+        }
+    });
+}
+
+function validatePaymentForm()
+{
+    $('#payment-submit').on('click', function (event) {
+        event.preventDefault();
+        if($('#consumer-no').val().length == 0)
+        {
+            setError('#consumer-no');
+        }
+        if($('#bill-no').val().length == 0)
+        {
+            setError('#bill-no');
+        }
+        if($('#payment-amount').val().length == 0)
+        {
+            setError("#payment-amount");
+        }
+        else
+        {
+            removeError();
+            ajaxPayment();
+        }
+
+    });
+
+    $('.error-empty-input')
+}
+
+function setError(fieldId)
+{
+    $(fieldId).css('border-color', 'red');
+    $(fieldId + '-error').text('This field cannot be blank');
+}
+
+function removeError() {
+    $('#consumer-no, #bill-no, #payment-amount ').css('border-color', '#ced4da');
+    $('.error-empty-input').each(function (i) {
+        $(this).text('');
+    });
+
+}
