@@ -1,18 +1,17 @@
 package vnuk.cse.scbanking.entity;
 
 import lombok.Data;
+import vnuk.cse.scbanking.entity.Payment;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
-import vnuk.cse.scbanking.entity.*;
-
 @Data
 @Entity
 @Table(name="bills")
 public class Bill implements Serializable {
-
     @Column(name="id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
