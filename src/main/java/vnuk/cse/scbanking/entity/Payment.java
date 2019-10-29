@@ -7,45 +7,65 @@ import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Date;
 
-import vnuk.cse.scbanking.entity.Bill;
-import vnuk.cse.scbanking.entity.User;
-import vnuk.cse.scbanking.entity.Wallet;
-
 @Data
 @Entity
 @Table(name="payments")
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(
+        name="discriminator",
+        discriminatorType=DiscriminatorType.STRING
+)
+@DiscriminatorValue(value="PD")
 public class Payment implements Serializable{
+
+    public Payment()
+    {}
+
+    public Payment(String consumerNumber, String billNumber,
+                   Double amount, Wallet wallet, User user, Bill bill)
+    {
+        this.consumerNumber = consumerNumber;
+        this.billNumber = billNumber;
+        this.amount = amount;
+        this.wallet = wallet;
+        this.user = user;
+        this.bill = bill;
+        this.createdAt = new Date();
+    }
     @Column(name="id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    private int id;
+    protected int id;
 
     @NotNull(message = "Consumer number cannot be empty")
     @Column(name = "consumer_number")
-    private String consumerNumber;
+    protected String consumerNumber;
 
     @NotNull(message = "Bill number cannot be empty")
     @Column(name = "bill_number")
-    private String billNumber;
+    protected String billNumber;
 
     @Column(name = "amount")
-    private double amount;
+    protected double amount;
+
+    @Column(name = "discriminator", nullable = true, insertable = false, updatable = false)
+    protected String discriminator;
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "created_at")
-    private Date createdAt;
+    protected Date createdAt;
 
     @ManyToOne
     @JoinColumn(name = "wallet_id")
-    private Wallet wallet;
+    protected Wallet wallet;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
-    private User user;
+    protected User user;
 
     @ManyToOne
     @JoinColumn(name = "bill_id")
-    private Bill bill;
+    protected Bill bill;
 
     public void setWallet(Wallet wallet) {
         this.wallet = wallet;
@@ -73,5 +93,13 @@ public class Payment implements Serializable{
 
     public void setCreatedAt(Date createdAt) {
         this.createdAt = createdAt;
+    }
+
+    public String getDiscriminator() {
+        return discriminator;
+    }
+
+    public void setDiscriminator(String discriminator) {
+        this.discriminator = discriminator;
     }
 }
