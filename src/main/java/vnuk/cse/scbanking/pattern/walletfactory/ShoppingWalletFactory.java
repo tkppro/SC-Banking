@@ -1,4 +1,4 @@
-package vnuk.cse.scbanking.pattern.paymentfactory.walletfactory;
+package vnuk.cse.scbanking.pattern.walletfactory;
 
 import vnuk.cse.scbanking.entity.User;
 import vnuk.cse.scbanking.entity.Wallet;

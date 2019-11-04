@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 import vnuk.cse.scbanking.entity.Payment;
 import vnuk.cse.scbanking.entity.PaymentType.BillType;
 import vnuk.cse.scbanking.entity.Wallet;
-import vnuk.cse.scbanking.pattern.paymentfactory.PaymentCapleFactory;
+import vnuk.cse.scbanking.pattern.paymentfactory.PaymentCableFactory;
 import vnuk.cse.scbanking.pattern.paymentfactory.PaymentElectricityFactory;
 import vnuk.cse.scbanking.pattern.paymentfactory.PaymentFactory;
 import vnuk.cse.scbanking.pattern.paymentfactory.PaymentWaterFactory;
@@ -41,7 +41,7 @@ public class PaymentService {
             case BillType.BILL_ELECTRICITY:
                 return new PaymentElectricityFactory();
             case BillType.BILL_CAPLE:
-                return new PaymentCapleFactory();
+                return new PaymentCableFactory();
             case BillType.BILL_WATER:
                 return new PaymentWaterFactory();
             default:

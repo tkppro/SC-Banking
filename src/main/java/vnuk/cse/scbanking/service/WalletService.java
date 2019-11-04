@@ -4,9 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import vnuk.cse.scbanking.entity.Wallet;
 import vnuk.cse.scbanking.entity.WalletType.WalletType;
-import vnuk.cse.scbanking.pattern.paymentfactory.walletfactory.BillingWalletFactory;
-import vnuk.cse.scbanking.pattern.paymentfactory.walletfactory.ShoppingWalletFactory;
-import vnuk.cse.scbanking.pattern.paymentfactory.walletfactory.WalletFactory;
+import vnuk.cse.scbanking.pattern.walletfactory.BillingWalletFactory;
+import vnuk.cse.scbanking.pattern.walletfactory.ShoppingWalletFactory;
+import vnuk.cse.scbanking.pattern.walletfactory.WalletFactory;
 import vnuk.cse.scbanking.repositories.UserRepository;
 import vnuk.cse.scbanking.repositories.WalletRepository;
 

@@ -12,11 +12,11 @@ import java.io.Serializable;
 @Entity
 @DiscriminatorValue("PC")
 @Table(name="payments")
-public class PaymentCaple extends Payment implements Serializable {
-    public PaymentCaple(){}
-    // Cable chứ ko phải là Caple nha man :v
-    public PaymentCaple(String consumerNumber, String billNumber,
-                              Double amount, Wallet wallet, User user, Bill bill)
+public class PaymentCable extends Payment implements Serializable {
+    public PaymentCable(){}
+
+    public PaymentCable(String consumerNumber, String billNumber,
+                        Double amount, Wallet wallet, User user, Bill bill)
     {
         super(consumerNumber, billNumber, amount, wallet, user, bill);
     }
