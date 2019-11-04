@@ -1,4 +1,4 @@
-package vnuk.cse.scbanking.pattern.paymentfactory.walletfactory;
+package vnuk.cse.scbanking.pattern.walletfactory;
 
 import vnuk.cse.scbanking.entity.User;
 import vnuk.cse.scbanking.entity.Wallet;
@@ -8,6 +8,5 @@ public class BillingWalletFactory extends WalletFactory {
     @Override
     public Wallet createWallet(User user,String name, String description, String createdAt) {
         return new BillingWallet(user, name, description, createdAt);
-        //return null;
     }
 }
