@@ -33,7 +33,8 @@ public class WalletController {
     @PostMapping("/wallets")
     public ModelAndView saveWallet(@ModelAttribute("wallet") @Valid Wallet wallet, BindingResult result) {
         if (!result.hasErrors()) {
-            walletService.save(wallet);
+            //walletService.save(wallet);
+            walletService.newWallet(wallet);
             ModelAndView redirectView = new ModelAndView();
             redirectView.setViewName("redirect:/dashboard");
             return redirectView;
