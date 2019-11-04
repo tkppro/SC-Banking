@@ -51,7 +51,7 @@
                 <form id="bankcard" class="bg-white p-4 text-info">
                     <div class="form-group row" th:each="card: ${cards}">
                         <label class="col-sm-4 col-form-label">
-                            <img class="icon" th:src="@{${card.image}}" style="max-width: 50px"/>
+                            <img class="icon" th:src="@{${card.cardType.image}}" style="max-width: 50px"/>
                         </label>
                         <div class="col-sm-7 ml-2">
                             <p class="mt-1 text-right" th:text="${card.cardNumber}">

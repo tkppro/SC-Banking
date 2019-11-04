@@ -37,10 +37,6 @@ public class Wallet implements Serializable {
     @OneToMany(mappedBy = "wallet")
     private List<Payment> payment;
 
-    @ManyToOne
-    @JoinColumn(name="card_id")
-    private Card card;
-
     public double getAmount() {
         return this.amount;
     }
