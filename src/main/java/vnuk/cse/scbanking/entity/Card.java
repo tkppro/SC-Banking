@@ -27,10 +27,11 @@ public class Card implements Serializable{
     @Column(name = "expired_date")
     private String expiredDate;
 
-    @Column(name = "image")
-    private String image;
-
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
+
+    @OneToOne
+    @JoinColumn(name = "card_type_id")
+    private CardType cardType;
 }
