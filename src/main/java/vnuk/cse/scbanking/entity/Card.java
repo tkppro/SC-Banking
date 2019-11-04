@@ -15,9 +15,6 @@ public class Card implements Serializable{
     @Id
     private int id;
 
-    @Column(name = "name")
-    private String name;
-
     @Column(name = "card_number")
     private String cardNumber;
 
