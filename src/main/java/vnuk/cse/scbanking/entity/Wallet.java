@@ -58,6 +58,9 @@ public class Wallet implements Serializable {
     @OneToMany(mappedBy = "wallet")
     protected List<Payment> payment;
 
+    @OneToMany(mappedBy = "wallet")
+    private List<TopUp> topUp;
+
     public double getAmount() {
         return this.amount;
     }

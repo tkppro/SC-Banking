@@ -1,6 +1,7 @@
 package vnuk.cse.scbanking.entity;
 
 import lombok.Data;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 
@@ -9,7 +10,8 @@ import javax.persistence.*;
 @Table(name="card_type")
 public class CardType {
     @Column(name="id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
+    @GenericGenerator(name = "native", strategy = "native")
     @Id
     private int id;
 
@@ -18,7 +20,4 @@ public class CardType {
 
     @Column(name = "image")
     private String image;
-
-    @OneToOne(mappedBy = "cardType")
-    private Card card;
 }
