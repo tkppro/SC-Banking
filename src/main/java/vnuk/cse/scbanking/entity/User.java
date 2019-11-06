@@ -53,6 +53,9 @@ public class User implements Serializable {
     @OneToMany(mappedBy = "user")
     private List<Wallet> wallet;
 
+    @OneToMany(mappedBy = "user")
+    private List<TopUp> topUp;
+
     public String getEmail() {
         return this.email;
     }

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{base.html}">
+<head>
+    <meta charset="UTF-8">
+    <title>Wallets</title>
+</head>
+<body>
+<header layout:fragment="header" class="masthead" style="background-image: url('img/background-4.jpg')">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-10 mx-auto">
+                <div class="site-heading">
+                    <h1>Card</h1>
+                    <span class="subheading">E-Wallet by TAT High Tech</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<div layout:fragment="content">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-7 mx-auto bg-light">
+                <h5 class="card-header text-white bg-info text-left py-4">
+                    <strong>Create Cards</strong>
+                </h5>
+                <form id="create-wallet" class="bg-white p-4 text-info" th:action="@{/card}"
+                      th:method="post">
+                    <div class="form-group row">
+                        <label class="col-sm-4 col-form-label">
+                            Card Number
+                        </label>
+                        <div class="col-sm-7 ml-2">
+                            <input type="text" class="form-control mt-1 text-left" name="cardNumber" />
+                        </div>
+
+                    </div>
+
+                    <div class="form-group row">
+                        <label class="col-sm-4 col-form-label">
+                            CVV
+                        </label>
+                        <div class="col-sm-7 ml-2">
+                            <input type="number" class="form-control mt-1 text-left" name="cvv" />
+                        </div>
+
+                    </div>
+
+                    <div class="form-group row">
+                        <label class="col-sm-4 col-form-label">
+                            Expired Day
+                        </label>
+                        <div class="col-sm-7 ml-2">
+                            <input type="date" class="form-control mt-1 text-left" name="expiredDay" />
+                        </div>
+
+                    </div>
+
+                    <div class="form-group row">
+                        <label class="col-sm-4 col-form-label">
+                            Card Type
+                        </label>
+                        <div class="col-sm-4 ml-2">
+                            <select name="cardTypeId" id="list-wallets-to" class="form-control">
+                                <option th:value="${cardType.id}" th:text="${cardType.name}" th:each="cardType: ${cardTypes}"></option>
+                            </select>
+                            <small class="text-danger error-id-wallet"></small>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-4 col-form-label">
+
+                        </label>
+                        <div class="col-sm-4 ml-2">
+                            <input type="submit" class="btn btn-info form-control mt-1 text-center"
+                                   value="Create Wallet">
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -2,11 +2,16 @@ package vnuk.cse.scbanking.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import vnuk.cse.scbanking.entity.Card;
+import vnuk.cse.scbanking.entity.TopUp;
+import vnuk.cse.scbanking.entity.User;
 import vnuk.cse.scbanking.entity.Wallet;
 import vnuk.cse.scbanking.entity.WalletType.WalletType;
 import vnuk.cse.scbanking.pattern.walletfactory.BillingWalletFactory;
 import vnuk.cse.scbanking.pattern.walletfactory.ShoppingWalletFactory;
 import vnuk.cse.scbanking.pattern.walletfactory.WalletFactory;
+import vnuk.cse.scbanking.repositories.CardRepository;
+import vnuk.cse.scbanking.repositories.TopUpRepository;
 import vnuk.cse.scbanking.repositories.UserRepository;
 import vnuk.cse.scbanking.repositories.WalletRepository;
 
@@ -16,6 +21,10 @@ import java.util.List;
 public class WalletService {
     @Autowired
     WalletRepository walletRepository;
+    @Autowired
+    TopUpRepository topUpRepository;
+    @Autowired
+    CardRepository cardRepository;
 
     @Autowired
     UserRepository userRepository;
@@ -70,12 +79,16 @@ public class WalletService {
         return false;
     }
 
-    public boolean topup(int walletId, double amount)
+    public boolean topup(int walletId, double amount, int cardId, int userId)
     {
         Wallet wallet = this.findWalletById(walletId);
+        Card card = cardRepository.findById(cardId);
+        User user = userRepository.findUserById(userId);
+        TopUp topup = new TopUp(card , user, wallet, amount);
         if(wallet != null)
         {
             wallet.setAmount(wallet.getAmount() + amount);
+            topUpRepository.save(topup);
             this.save(wallet);
             return true;
         }
