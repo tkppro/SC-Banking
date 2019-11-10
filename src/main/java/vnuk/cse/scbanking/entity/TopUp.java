@@ -8,12 +8,6 @@ import java.util.Date;
 @Data
 @Entity
 @Table(name="Topups")
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(
-        name="discriminator",
-        discriminatorType=DiscriminatorType.STRING
-)
-@DiscriminatorValue(value="TU")
 public class TopUp {
     @Column(name="id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
