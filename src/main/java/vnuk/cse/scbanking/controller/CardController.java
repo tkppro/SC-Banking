@@ -28,7 +28,7 @@ public class CardController {
     @Autowired
     CardTypeRepository cardTypeRepository;
 
-    @GetMapping("/card")
+    @GetMapping("/cards")
     public ModelAndView wallet() {
         List<Card> cards = cardService.findCardByUserId(1);
         List<CardType> cardTypes = cardTypeRepository.findAll();
