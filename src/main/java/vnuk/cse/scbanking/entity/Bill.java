@@ -26,4 +26,8 @@ public class Bill implements Serializable {
 
     @OneToMany(mappedBy = "bill")
     private List<Payment> payment;
+
+    public String getName() {
+        return this.name;
+    }
 }

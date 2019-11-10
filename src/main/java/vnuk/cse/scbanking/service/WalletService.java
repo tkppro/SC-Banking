@@ -2,18 +2,12 @@ package vnuk.cse.scbanking.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import vnuk.cse.scbanking.entity.Card;
-import vnuk.cse.scbanking.entity.TopUp;
-import vnuk.cse.scbanking.entity.User;
-import vnuk.cse.scbanking.entity.Wallet;
+import vnuk.cse.scbanking.entity.*;
 import vnuk.cse.scbanking.entity.WalletType.WalletType;
 import vnuk.cse.scbanking.pattern.walletfactory.BillingWalletFactory;
 import vnuk.cse.scbanking.pattern.walletfactory.ShoppingWalletFactory;
 import vnuk.cse.scbanking.pattern.walletfactory.WalletFactory;
-import vnuk.cse.scbanking.repositories.CardRepository;
-import vnuk.cse.scbanking.repositories.TopUpRepository;
-import vnuk.cse.scbanking.repositories.UserRepository;
-import vnuk.cse.scbanking.repositories.WalletRepository;
+import vnuk.cse.scbanking.repositories.*;
 
 import java.util.List;
 
@@ -28,6 +22,8 @@ public class WalletService {
 
     @Autowired
     UserRepository userRepository;
+    @Autowired
+    TransactionRepository transactionRepository;
 
     public List<Wallet> findAll() {
         return walletRepository.findAll();
@@ -90,6 +86,8 @@ public class WalletService {
             wallet.setAmount(wallet.getAmount() + amount);
             topUpRepository.save(topup);
             this.save(wallet);
+            Transaction transaction = new Transaction(amount, topup);
+            transactionRepository.save(transaction);
             return true;
         }
         return false;

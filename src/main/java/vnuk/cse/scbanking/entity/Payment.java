@@ -16,7 +16,7 @@ import java.util.Date;
         discriminatorType=DiscriminatorType.STRING
 )
 @DiscriminatorValue(value="PD")
-public class Payment implements Serializable{
+public class Payment implements Serializable, CommonTransaction{
 
     public Payment()
     {}
@@ -101,5 +101,20 @@ public class Payment implements Serializable{
 
     public void setDiscriminator(String discriminator) {
         this.discriminator = discriminator;
+    }
+
+    @Override
+    public Double getAmount() {
+        return this.amount;
+    }
+
+    @Override
+    public Date getCreatedAt() {
+        return this.createdAt;
+    }
+
+    @Override
+    public String getTransactionName() {
+        return this.bill.getName();
     }
 }
