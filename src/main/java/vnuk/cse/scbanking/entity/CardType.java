@@ -20,4 +20,8 @@ public class CardType {
 
     @Column(name = "image")
     private String image;
+
+    public String getName() {
+        return this.name;
+    }
 }

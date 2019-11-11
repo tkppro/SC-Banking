@@ -1,6 +1,15 @@
 package vnuk.cse.scbanking.entity;
 
 import lombok.Data;
+import org.hibernate.annotations.Any;
+import org.hibernate.annotations.AnyMetaDef;
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.MetaValue;
+import vnuk.cse.scbanking.entity.CardTypeAbstract.CardMaster;
+import vnuk.cse.scbanking.entity.CardTypeAbstract.CardPaypal;
+import vnuk.cse.scbanking.entity.CardTypeAbstract.CardVisa;
+import vnuk.cse.scbanking.entity.WalletType.BillingWallet;
+import vnuk.cse.scbanking.entity.WalletType.ShoppingWallet;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -22,16 +31,17 @@ public class Payment implements Serializable, CommonTransaction{
     {}
 
     public Payment(String consumerNumber, String billNumber,
-                   Double amount, Wallet wallet, User user, Bill bill)
+                   Double amount, CommonPayment commonPayment, User user, Bill bill)
     {
         this.consumerNumber = consumerNumber;
         this.billNumber = billNumber;
         this.amount = amount;
-        this.wallet = wallet;
+        this.commonPayment = commonPayment;
         this.user = user;
         this.bill = bill;
         this.createdAt = new Date();
     }
+
     @Column(name="id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
@@ -59,6 +69,21 @@ public class Payment implements Serializable, CommonTransaction{
     @JoinColumn(name = "wallet_id")
     protected Wallet wallet;
 
+    @Any(metaColumn = @Column(name = "payment_type"))
+    @AnyMetaDef(idType = "integer", metaType = "string", metaValues = {
+            @MetaValue(targetEntity = Card.class, value = "Card"),
+            @MetaValue(targetEntity = CardMaster.class, value = "Card Master"),
+            @MetaValue(targetEntity = CardPaypal.class, value = "Card Paypal"),
+            @MetaValue(targetEntity = CardVisa.class, value = "Card Visa"),
+            @MetaValue(targetEntity = Wallet.class, value = "Wallet"),
+            @MetaValue(targetEntity = BillingWallet.class, value = "Billing Wallet"),
+            @MetaValue(targetEntity = ShoppingWallet.class, value = "Shopping Wallet")
+    })
+    @Cascade( { org.hibernate.annotations.CascadeType.ALL})
+    @JoinColumn(name = "payment_row_id")
+    protected CommonPayment commonPayment;
+
+
     @ManyToOne
     @JoinColumn(name = "user_id")
     protected User user;
@@ -66,10 +91,6 @@ public class Payment implements Serializable, CommonTransaction{
     @ManyToOne
     @JoinColumn(name = "bill_id")
     protected Bill bill;
-
-    public void setWallet(Wallet wallet) {
-        this.wallet = wallet;
-    }
 
     public void setUser(User user) {
         this.user = user;

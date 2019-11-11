@@ -89,7 +89,7 @@
     validatePaymentForm();
 
     $('.alert').css('display', 'none');
-
+    getPaymentMethod();
 })(jQuery); // End of use strict
 
 function ajaxPayment() {
@@ -98,6 +98,7 @@ function ajaxPayment() {
     var consumberNumber = $('#consumer-no').val();
     var billNumber = $('#bill-no').val();
     var walletId = $('#list-wallets').val();
+    var cardId = $('#list-cards').val();
     var amount = $('#payment-amount').val();
     var userId = "1";
 
@@ -105,9 +106,14 @@ function ajaxPayment() {
     datas['consumerNumber'] = consumberNumber;
     datas['billNumber'] = billNumber;
     datas['amount'] = amount;
-    datas['wallet_id'] = walletId;
+
     datas['user_id'] = userId;
     datas['bill_id'] = billId;
+    if($('#card-payment').is(':checked'))
+        datas['card_id'] = cardId;
+    if($('#wallet-payment').is(':checked'))
+        datas['wallet_id'] = walletId;
+
     $.ajax({
         type: "POST",
         contentType: "application/json",
@@ -163,6 +169,21 @@ function removeError() {
     $('#consumer-no, #bill-no, #payment-amount ').css('border-color', '#ced4da');
     $('.error-empty-input').each(function (i) {
         $(this).text('');
+    });
+
+}
+
+function getPaymentMethod()
+{
+    $('.form-check-input').on('click', function () {
+        if($('#wallet-payment').is(':checked')){
+            $('#card-select-option').css('display', 'none');
+            $('#wallet-select-option').css('display', 'flex');
+        }
+        if($('#card-payment').is(':checked')){
+            $('#wallet-select-option').css('display', 'none');
+            $('#card-select-option').css('display', 'flex');
+        }
     });
 
 }
