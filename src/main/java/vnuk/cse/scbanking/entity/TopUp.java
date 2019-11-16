@@ -8,7 +8,7 @@ import java.util.Date;
 @Data
 @Entity
 @Table(name="Topups")
-public class TopUp {
+public class TopUp implements CommonTransaction{
     @Column(name="id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
@@ -39,4 +39,18 @@ public class TopUp {
     @JoinColumn(name = "wallet_id")
     private Wallet wallet;
 
+    @Override
+    public Double getAmount() {
+        return this.amount;
+    }
+
+    @Override
+    public Date getCreatedAt() {
+        return this.createdAt;
+    }
+
+    @Override
+    public String getTransactionName() {
+        return "Topup";
+    }
 }

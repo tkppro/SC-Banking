@@ -4,15 +4,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import vnuk.cse.scbanking.entity.Payment;
 import vnuk.cse.scbanking.entity.PaymentType.BillType;
+import vnuk.cse.scbanking.entity.Transaction;
 import vnuk.cse.scbanking.entity.Wallet;
 import vnuk.cse.scbanking.pattern.paymentfactory.PaymentCableFactory;
 import vnuk.cse.scbanking.pattern.paymentfactory.PaymentElectricityFactory;
 import vnuk.cse.scbanking.pattern.paymentfactory.PaymentFactory;
 import vnuk.cse.scbanking.pattern.paymentfactory.PaymentWaterFactory;
-import vnuk.cse.scbanking.repositories.BillRepository;
-import vnuk.cse.scbanking.repositories.PaymentRepository;
-import vnuk.cse.scbanking.repositories.UserRepository;
-import vnuk.cse.scbanking.repositories.WalletRepository;
+import vnuk.cse.scbanking.repositories.*;
 
 import java.util.List;
 import java.util.Map;
@@ -30,6 +28,9 @@ public class PaymentService {
 
     @Autowired
     WalletRepository walletRepository;
+
+    @Autowired
+    TransactionRepository transactionRepository;
 
     public List<Payment> findAll() {
         return paymentRepository.findAll();
@@ -67,7 +68,8 @@ public class PaymentService {
                 this.billRepository.findBillById(Integer.parseInt(data.get("bill_id"))));
 
         paymentRepository.save(payment);
-
+        Transaction transaction = new Transaction(Double.parseDouble(data.get("amount")), payment);
+        transactionRepository.save(transaction);
         return true;
     }
 

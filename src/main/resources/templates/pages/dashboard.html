@@ -68,10 +68,10 @@
                     <strong>Transaction</strong>
                 </h5>
                 <form id="transaction" class="bg-white p-4 text-info">
-                    <div class="form-group row" th:each="payment: ${payments}">
-                        <label class="col-sm-4 col-form-label" th:text="${payment.bill.name}"></label>
+                    <div class="form-group row" th:each="transaction: ${transactions}">
+                        <label class="col-sm-4 col-form-label" th:text="${transaction.commonTransaction.getTransactionName()}"></label>
                         <div class="col-sm-7 ml-2">
-                            <p class="mt-1 text-right" th:text="${payment.createdAt}">
+                            <p class="mt-1 text-right" th:text="${transaction.createdAt}">
                             </p>
                         </div>
                     </div>
