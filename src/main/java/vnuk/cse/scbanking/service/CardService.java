@@ -63,4 +63,8 @@ public class CardService {
 
         return true;
     }
+
+    public Card findById(int id) {
+        return this.cardRepository.findById(id);
+    }
 }

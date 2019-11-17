@@ -19,7 +19,7 @@ import vnuk.cse.scbanking.entity.User;
 )
 @DiscriminatorValue(value="CD")
 
-public class Card implements Serializable{
+public class Card implements Serializable, CommonPayment{
 
     public Card() {
     }
@@ -56,4 +56,9 @@ public class Card implements Serializable{
 
     @OneToMany(mappedBy = "card")
     private List<TopUp> topUp;
+
+    @Override
+    public String getPaymentName() {
+        return cardType.getName();
+    }
 }

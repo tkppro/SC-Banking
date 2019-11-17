@@ -66,13 +66,44 @@
                             <small id="bill-no-error" class="text-danger error-empty-input"></small>
                         </div>
                     </div>
+
                     <div class="form-group row">
+                        <label class="col-sm-4 col-form-label">
+                            Select payment method
+                        </label>
+                        <div class="col-sm-4 ml-2">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="exampleRadios" id="wallet-payment" value="1" checked>
+                                <label class="form-check-label" for="wallet-payment">
+                                    By wallet
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="exampleRadios" id="card-payment" value="2">
+                                <label class="form-check-label" for="card-payment">
+                                    By card
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row" id="wallet-select-option">
                         <label class="col-sm-4 col-form-label">
                             Select Wallet
                         </label>
                         <div class="col-sm-4 ml-2">
                             <select name="wallet-id" id="list-wallets" class="form-control">
                                 <option th:value="${wallet.id}" th:text="${wallet.name}" th:each="wallet: ${wallets}"></option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row" id="card-select-option" style="display: none;">
+                        <label class="col-sm-4 col-form-label">
+                            Select Card
+                        </label>
+                        <div class="col-sm-4 ml-2">
+                            <select name="card-id" id="list-cards" class="form-control">
+                                <option th:each="card: ${cards}" th:value="${card.id}"
+                                        th:text="${card.cardNumber} + ' - ' +${card.cardType.name}"></option>
                             </select>
                         </div>
                     </div>

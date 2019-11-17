@@ -2,7 +2,7 @@ package vnuk.cse.scbanking.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import vnuk.cse.scbanking.entity.Payment;
+import vnuk.cse.scbanking.entity.*;
 import vnuk.cse.scbanking.entity.PaymentType.BillType;
 import vnuk.cse.scbanking.entity.Transaction;
 import vnuk.cse.scbanking.entity.Wallet;
@@ -10,6 +10,7 @@ import vnuk.cse.scbanking.pattern.paymentfactory.PaymentCableFactory;
 import vnuk.cse.scbanking.pattern.paymentfactory.PaymentElectricityFactory;
 import vnuk.cse.scbanking.pattern.paymentfactory.PaymentFactory;
 import vnuk.cse.scbanking.pattern.paymentfactory.PaymentWaterFactory;
+import vnuk.cse.scbanking.pattern.paymentstrategy.PaymentContext;
 import vnuk.cse.scbanking.repositories.*;
 
 import java.util.List;
@@ -32,6 +33,9 @@ public class PaymentService {
     @Autowired
     TransactionRepository transactionRepository;
 
+    @Autowired
+    CardRepository cardRepository;
+
     public List<Payment> findAll() {
         return paymentRepository.findAll();
     }
@@ -50,22 +54,21 @@ public class PaymentService {
         }
     }
 
-    public boolean payment(Map<String, String> data)
+    public boolean payment(Map<String, String> data, PaymentContext paymentContext)
     {
-        Wallet wallet = this.walletRepository.findWalletById(Integer.parseInt(data.get("wallet_id")));
-        if(wallet == null || wallet.getAmount() < Double.parseDouble(data.get("amount")) || data.get("amount") == null)
+        if(data.get("wallet_id") != null)
         {
-            return false;
+            Wallet wallet = this.walletRepository.findWalletById(Integer.parseInt(data.get("wallet_id")));
+            if(wallet == null || wallet.getAmount() < Double.parseDouble(data.get("amount")) || data.get("amount") == null)
+            {
+                return false;
+            }
         }
 
-        wallet.setAmount(wallet.getAmount() - Double.parseDouble(data.get("amount")));
-        this.walletRepository.save(wallet);
-
         PaymentFactory factory = paymentFactory(Integer.parseInt(data.get("bill_id")));
-        Payment payment = factory.createPayment(data.get("consumerNumber"), data.get("billNumber"),
-                Double.parseDouble(data.get("amount")),
-                wallet,this.userRepository.findUserById(Integer.parseInt(data.get("user_id"))),
-                this.billRepository.findBillById(Integer.parseInt(data.get("bill_id"))));
+        User user = this.userRepository.findUserById(Integer.parseInt(data.get("user_id")));
+        Bill bill = this.billRepository.findBillById(Integer.parseInt(data.get("bill_id")));
+        Payment payment = paymentContext.pay(data, factory, user, bill);
 
         paymentRepository.save(payment);
         Transaction transaction = new Transaction(Double.parseDouble(data.get("amount")), payment);

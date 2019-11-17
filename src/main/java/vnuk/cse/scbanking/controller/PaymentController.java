@@ -6,7 +6,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import vnuk.cse.scbanking.pattern.paymentstrategy.CardPaymentStrategy;
+import vnuk.cse.scbanking.pattern.paymentstrategy.PaymentContext;
+import vnuk.cse.scbanking.pattern.paymentstrategy.WalletPaymentStrategy;
+import vnuk.cse.scbanking.service.CardService;
 import vnuk.cse.scbanking.service.PaymentService;
+import vnuk.cse.scbanking.service.WalletService;
 
 import java.util.Map;
 
@@ -14,12 +19,27 @@ import java.util.Map;
 public class PaymentController {
     @Autowired
     PaymentService paymentService;
-
+    @Autowired
+    PaymentContext paymentContext;
+    @Autowired
+    WalletService walletService;
+    @Autowired
+    CardService cardService;
+    
     @PostMapping("/payments")
     public ResponseEntity<String> savePayment(@RequestBody Map<String, String> json) {
         String message = "";
+        if(json.get("card_id") != null)
+        {
+            paymentContext.setPaymentStrategy(new CardPaymentStrategy(cardService));
+        }
 
-        if(paymentService.payment(json))
+        if(json.get("wallet_id") != null)
+        {
+            paymentContext.setPaymentStrategy(new WalletPaymentStrategy(walletService));
+        }
+
+        if(paymentService.payment(json, paymentContext))
         {
             message = "{\"msg\":\"Paid bill successfully\"}";
 
@@ -31,6 +51,5 @@ public class PaymentController {
 
             return new ResponseEntity<>(message, HttpStatus.BAD_REQUEST);
         }
-
     }
 }

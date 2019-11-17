@@ -21,7 +21,7 @@ import java.util.List;
         discriminatorType=DiscriminatorType.STRING
 )
 @DiscriminatorValue(value="WD")
-public class Wallet implements Serializable {
+public class Wallet implements Serializable, CommonPayment {
     @Column(name="id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
@@ -78,5 +78,10 @@ public class Wallet implements Serializable {
     }
     public void setAmount(double amount) {
         this.amount = amount;
+    }
+
+    @Override
+    public String getPaymentName() {
+        return this.name;
     }
 }
