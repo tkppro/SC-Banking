@@ -1,4 +1,4 @@
-package vnuk.cse.scbanking.entity.CardTypeAbstract;
+package vnuk.cse.scbanking.pattern.cardabstractfactory;
 
 import vnuk.cse.scbanking.entity.Card;
 import vnuk.cse.scbanking.entity.CardType;
