@@ -59,9 +59,9 @@ public class TestCardService {
         walletList.add(new Wallet());
         transactionList.add(new Transaction());
 
-        when(cardService.findAll()).thenReturn((List) cardList);
-        when(walletService.findAll()).thenReturn((List) walletList);
-        when(transactionService.findAll()).thenReturn((List) transactionList);
+        when(cardService.findAll()).thenReturn(cardList);
+        when(walletService.findAll()).thenReturn(walletList);
+        when(transactionService.findAll()).thenReturn(transactionList);
 
         mockMvc.perform(get("/dashboard"))
                 .andExpect(status().isOk())
@@ -72,14 +72,14 @@ public class TestCardService {
 
     }
     @Test
-    public void testSaveBill() throws Exception {
+    public void testSaveCard() throws Exception {
         Card card = new Card();
         when(cardService.saveCard(card)).thenReturn(card);
         assertEquals(card, cardService.saveCard(card));
     }
 
     @Test
-    public void testDeleteBill() throws Exception {
+    public void testDeleteCard() throws Exception {
         Card card = new Card();
         cardService.deleteCard(card);
         verify(cardService, times(1)).deleteCard(card);
