@@ -29,8 +29,8 @@ public class DashboardController {
     @GetMapping("/dashboard")
     public ModelAndView dashboard() {
         ModelAndView modelAndView = new ModelAndView("/pages/dashboard");
-        List<Wallet> wallets = walletService.findAll();
         List<Card> cards = cardService.findAll();
+        List<Wallet> wallets = walletService.findAll();
         List<Transaction> transactions = transactionService.findAll();
         float sum = 0;
         for(Wallet wallet:wallets)
