@@ -19,10 +19,11 @@ public class WalletController {
     @Autowired
     WalletService walletService;
 
-    ModelAndView modelAndView = new ModelAndView("/pages/wallets");
+
 
     @GetMapping("/wallets")
     public ModelAndView wallet() {
+        ModelAndView modelAndView = new ModelAndView("/pages/wallets");
         Wallet wallet = new Wallet();
         List<Wallet> wallets = walletService.findAll();
         modelAndView.addObject("wallets", wallets);

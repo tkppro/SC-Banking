@@ -48,6 +48,10 @@ public class WalletService {
          walletRepository.save(wallet);
     }
 
+    public Wallet saveWallet (Wallet wallet) {
+        return walletRepository.save(wallet);
+    }
+
     public void newWallet (Wallet wallet) {
         WalletFactory walletFactory = walletFactory(1);
         Wallet newWallet = walletFactory.createWallet(userRepository.findUserById(2),wallet.getName(), wallet.getDescription(), wallet.getCreatedAt());
