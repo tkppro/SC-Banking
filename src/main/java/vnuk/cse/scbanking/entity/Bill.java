@@ -12,6 +12,11 @@ import java.util.List;
 @Entity
 @Table(name="bills")
 public class Bill implements Serializable {
+    public Bill(String name, Date createdAt) {
+        this.name = name;
+        this.createdAt = createdAt;
+    }
+
     @Column(name="id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id

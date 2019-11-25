@@ -18,4 +18,14 @@ public class BillService {
     public Bill findBillById(int id) {
         return billRepository.findBillById(id);
     }
+
+    public Bill save(Bill bill)
+    {
+        return billRepository.save(bill);
+    }
+
+    public void delete(Bill bill)
+    {
+        billRepository.delete(bill);
+    }
 }
