@@ -1,4 +1,4 @@
-package vnuk.cse.scbanking;
+package vnuk.cse.scbanking.service;
 
 import org.junit.Before;
 import org.junit.Test;
