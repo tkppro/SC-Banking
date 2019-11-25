@@ -1,6 +1,7 @@
 package vnuk.cse.scbanking.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import vnuk.cse.scbanking.entity.Bill;
 import vnuk.cse.scbanking.entity.Card;
 import vnuk.cse.scbanking.entity.CardType;
 import vnuk.cse.scbanking.entity.CardTypeAbstract.*;
@@ -66,5 +67,14 @@ public class CardService {
 
     public Card findById(int id) {
         return this.cardRepository.findById(id);
+    }
+
+    public Card saveCard(Card card) {
+        return this.cardRepository.save(card);
+    }
+
+    public void deleteCard(Card card)
+    {
+        this.cardRepository.delete(card);
     }
 }
