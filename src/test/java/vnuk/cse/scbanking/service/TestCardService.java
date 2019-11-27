@@ -9,18 +9,12 @@ import org.mockito.MockitoAnnotations;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-import vnuk.cse.scbanking.controller.CardController;
 import vnuk.cse.scbanking.controller.DashboardController;
-import vnuk.cse.scbanking.entity.Bill;
 import vnuk.cse.scbanking.entity.Card;
 import vnuk.cse.scbanking.entity.Transaction;
 import vnuk.cse.scbanking.entity.Wallet;
-import vnuk.cse.scbanking.service.CardService;
-import vnuk.cse.scbanking.service.TransactionService;
-import vnuk.cse.scbanking.service.WalletService;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import static org.hamcrest.Matchers.hasSize;
@@ -71,6 +65,7 @@ public class TestCardService {
                 .andExpect(model().attribute("transactions", hasSize(1)));
 
     }
+
     @Test
     public void testSaveCard() throws Exception {
         Card card = new Card();
