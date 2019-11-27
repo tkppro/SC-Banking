@@ -10,17 +10,15 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import vnuk.cse.scbanking.controller.DashboardController;
 import vnuk.cse.scbanking.controller.WalletController;
 import vnuk.cse.scbanking.entity.Wallet;
-import vnuk.cse.scbanking.service.WalletService;
-
-import static org.hamcrest.collection.IsCollectionWithSize.hasSize;
-import static org.mockito.Mockito.when;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
-
 
 import java.util.ArrayList;
 import java.util.List;
-import static org.junit.Assert.*;
+
+import static org.hamcrest.collection.IsCollectionWithSize.hasSize;
+import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 public class TestWalletService {
 
