@@ -22,7 +22,7 @@ public class CardController {
     CardTypeService cardTypeService;
 
     @GetMapping("/cards")
-    public ModelAndView wallet() {
+    public ModelAndView card() {
         List<Card> cards = cardService.findCardByUserId(1);
         List<CardType> cardTypes = cardTypeService.findAll();
 
@@ -32,8 +32,8 @@ public class CardController {
         return modelAndView;
     }
 
-    @PostMapping(path = "/card")
-    public ModelAndView saveWallet(@ModelAttribute("cardNumber") @Valid String cardNumber, @ModelAttribute("expiredDay") @Valid String expiredDay, @ModelAttribute("cardTypeId") @Valid int cardTypeid, @ModelAttribute("cvv") @Valid int cvv) {
+    @PostMapping(path = "/cards")
+    public ModelAndView saveCard(@ModelAttribute("cardNumber") @Valid String cardNumber, @ModelAttribute("expiredDay") @Valid String expiredDay, @ModelAttribute("cardTypeId") @Valid int cardTypeid, @ModelAttribute("cvv") @Valid int cvv) {
 
         if (cardService.findCardByCardNumber(cardNumber) == null) {
             cardService.card(cardNumber, cardTypeid, cvv, expiredDay);
@@ -45,4 +45,19 @@ public class CardController {
             return redirectView;
         }
     }
+
+    @PostMapping(path = "/editcard")
+    public ModelAndView deleteCard(@ModelAttribute("cardId") @Valid int cardId, @ModelAttribute("cvv") @Valid int cvv, @ModelAttribute("cardTypeId") @Valid int cardTypeid) {
+
+        if (cardService.findById(cardId) != null) {
+            cardService.card(cardService.findById(cardId).getCardNumber(), cardTypeid, cvv, cardService.findById(cardId).getExpiredDate());
+            ModelAndView redirectView = new ModelAndView();
+            redirectView.setViewName("redirect:/dashboard");
+            return redirectView;
+        } else {
+            ModelAndView redirectView = new ModelAndView();
+            return redirectView;
+        }
+    }
+
 }

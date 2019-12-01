@@ -61,4 +61,12 @@ public class Card implements Serializable, CommonPayment{
     public String getPaymentName() {
         return cardType.getName();
     }
+
+    public String getCardNumber() {
+        return cardNumber;
+    }
+
+    public String getExpiredDate() {
+        return expiredDate;
+    }
 }

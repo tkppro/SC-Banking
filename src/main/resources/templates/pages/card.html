@@ -28,7 +28,7 @@
                 <h5 class="card-header text-white bg-info text-left py-4">
                     <strong>Create Cards</strong>
                 </h5>
-                <form id="create-wallet" class="bg-white p-4 text-info" th:action="@{/card}"
+                <form id="create-wallet" class="bg-white p-4 text-info" th:action="@{/cards}"
                       th:method="post">
                     <div class="form-group row">
                         <label class="col-sm-4 col-form-label">
@@ -78,6 +78,47 @@
                         <div class="col-sm-4 ml-2">
                             <input type="submit" class="btn btn-info form-control mt-1 text-center"
                                    value="Create card">
+                        </div>
+                    </div>
+                </form>
+                <form id="edit-card" class="bg-white p-4 text-info" th:action="@{/editcard}"
+                      th:method="post">
+                    <div class="form-group row">
+                        <label class="col-sm-4 col-form-label">
+                            Card Number
+                        </label>
+                        <div class="col-sm-4 ml-2">
+                            <select name="cardId" id="list-cards-to" class="form-control">
+                                <option th:value="${card.id}" th:text="${card.cardNumber}" th:each="card: ${cards}"></option>
+                            </select>
+                            <small class="text-danger error-id-wallet"></small>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-4 col-form-label">
+                            CVV
+                        </label>
+                        <div class="col-sm-7 ml-2">
+                            <input type="number" class="form-control mt-1 text-left" name="cvv" />
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-4 col-form-label">
+                            Card Type
+                        </label>
+                        <div class="col-sm-4 ml-2">
+                            <select name="cardTypeId" id="list-wallets-to" class="form-control">
+                                <option th:value="${cardType.id}" th:text="${cardType.name}" th:each="cardType: ${cardTypes}"></option>
+                            </select>
+                            <small class="text-danger error-id-wallet"></small>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-4 col-form-label">
+                        </label>
+                        <div class="col-sm-4 ml-2">
+                            <input type="submit" class="btn btn-info form-control mt-1 text-center"
+                                   value="Edit card">
                         </div>
                     </div>
                 </form>

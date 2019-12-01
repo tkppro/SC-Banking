@@ -11,6 +11,7 @@ import vnuk.cse.scbanking.pattern.cardabstractfactory.CardAbstractFactory;
 import vnuk.cse.scbanking.pattern.cardabstractfactory.CardMasterFactory;
 import vnuk.cse.scbanking.pattern.cardabstractfactory.CardPaypalFactory;
 import vnuk.cse.scbanking.pattern.cardabstractfactory.CardVisaFactory;
+import vnuk.cse.scbanking.pattern.cardbridge.BasicConnector;
 import vnuk.cse.scbanking.repositories.CardRepository;
 import vnuk.cse.scbanking.repositories.CardTypeRepository;
 import vnuk.cse.scbanking.repositories.UserRepository;
@@ -67,8 +68,9 @@ public class CardService {
 
         CardAbstractFactory factory = cardAbstractFactory(cardTypeId);
         Card newcard = factory.createCard(cardNumber, cvv, user, cardType, expireDay);
-
-        this.cardRepository.save(newcard);
+        // use bridge design pattern
+        BasicConnector basicConnector = new BasicConnector(newcard, this);
+        basicConnector.saveCard();
 
         return true;
     }
@@ -84,5 +86,10 @@ public class CardService {
     public void deleteCard(Card card)
     {
         this.cardRepository.delete(card);
+    }
+
+    public void deleteCardByBridge(Card card) {
+        BasicConnector basicConnector = new BasicConnector(card, this);
+        basicConnector.deleteCard();
     }
 }
