@@ -1,4 +1,4 @@
-package vnuk.cse.scbanking.entity.CardTypeAbstract;
+package vnuk.cse.scbanking.pattern.cardabstractfactory.CardTypeAbstract;
 
 public interface CardTypeId {
     int CARD_VISA = 1;

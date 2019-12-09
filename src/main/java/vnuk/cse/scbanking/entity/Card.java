@@ -24,12 +24,13 @@ public class Card implements Serializable, CommonPayment{
     public Card() {
     }
 
-    public Card(String cardNumber, int cvv, User user, CardType cardType, String expiredDay) {
+    public Card(String cardNumber, int cvv, User user, CardType cardType, String expiredDay, String bussinessClass) {
         this.cardNumber = cardNumber;
         this.cvv = cvv;
         this.user = user;
         this.cardType = cardType;
         this.expiredDate = expiredDay;
+        this.bussinessClass = bussinessClass;
     }
 
     @Id
@@ -45,6 +46,9 @@ public class Card implements Serializable, CommonPayment{
 
     @Column(name = "expired_date")
     private String expiredDate;
+
+    @Column(name = "bussiness_class")
+    private String bussinessClass;
 
     @ManyToOne
     @JoinColumn(name = "user_id")

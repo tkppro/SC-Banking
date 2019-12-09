@@ -5,9 +5,9 @@ import org.hibernate.annotations.Any;
 import org.hibernate.annotations.AnyMetaDef;
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.MetaValue;
-import vnuk.cse.scbanking.entity.CardTypeAbstract.CardMaster;
-import vnuk.cse.scbanking.entity.CardTypeAbstract.CardPaypal;
-import vnuk.cse.scbanking.entity.CardTypeAbstract.CardVisa;
+import vnuk.cse.scbanking.pattern.cardabstractfactory.CardTypeAbstract.CardMaster;
+import vnuk.cse.scbanking.pattern.cardabstractfactory.CardTypeAbstract.CardPaypal;
+import vnuk.cse.scbanking.pattern.cardabstractfactory.CardTypeAbstract.CardVisa;
 import vnuk.cse.scbanking.entity.WalletType.BillingWallet;
 import vnuk.cse.scbanking.entity.WalletType.ShoppingWallet;
 
